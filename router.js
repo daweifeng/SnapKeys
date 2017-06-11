@@ -11,6 +11,8 @@ const COLLECTION_NAME = 'images';
 const upload = multer({ dest: `${ UPLOAD_PATH }` });
 const db = new Loki(`${ UPLOAD_PATH }/${ DB_NAME }`, { persistenceMethod: 'fs' });
 
+
+
 module.exports = (app) => {
     app.post('/upload', upload.single('file'), (req, res, next) => {
 
@@ -20,8 +22,12 @@ module.exports = (app) => {
                 // res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
                 ImgToText(app, data.filename)
                     .then((text) => {
-                        Scrap(app, text);
-                        res.send(text);
+                        const links = Scrap(app, text);
+                        const response = {
+                            links,
+                            text
+                        };
+                        res.send(response);
                     })
                     .catch((err)=>{
                         res.status(400).send(err);
