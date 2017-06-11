@@ -8,6 +8,7 @@ module.exports = (app, text) => {
         section = text.substring(0,100);
     }
     section = section.replace(/\s/g, "%20");
+    console.log(section);
     const cheggLink = `https://www.chegg.com/search/${section}/questions-and-answers?trackid=320802d1&strackid=2d555d86&event=button_submit#p=1`;
     // console.log('List link', listLink);
     // console.log('section', section);
@@ -20,9 +21,11 @@ module.exports = (app, text) => {
     //     .catch((err) => console.log('List err:', err));
     
     
-   const result = questionLibrary.questions.filter(x => x.quesiton === section);
+   const result = questionLibrary.questions.filter(x => x.question === section);
+   console.log('result:', result);
    const { answer } = result[0];
    const { key } = result[0];
+//    console.log('key', key);
    let slugArry = []
    
     // return axios.get(`https://api.coursera.org/api/courses.v1/?q=search&query=${key}`)
@@ -34,7 +37,6 @@ module.exports = (app, text) => {
     //         return slugArry;   
     //     })
     const courseLink = `https://api.coursera.org/api/courses.v1/?q=search&query=${key}`;
-    
     return { courseLink, cheggLink } ;
 }
 
