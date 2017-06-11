@@ -20,20 +20,9 @@ $ajax({
 
 ```
 
-```javascript
+```
 
-To access Coursera Api(Using the link from Our API)
-$ajax({
-  type: "GET",
-  url: "COURSERA_API_URL",
-  success: (res) => {
-    const link = 
-      `https://www.coursera.org/learn/{res.data.elements[0].slug}`
-
-       //Do something with link
-       ...
-  }
-});
+The API wil return recommanded courses from coursera and solutions from Chegg
 ```
 ## To-Do List
 1. Use machine learning to auto categorize questions and suggest related learning materials (Coursera classes .etc);

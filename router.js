@@ -4,14 +4,11 @@ const Loki = require('lokijs');
 const ImgToText = require('./controller/imgToText');
 const Scrap = require('./controller/scrap');
 
-
 const UPLOAD_PATH = 'controller/uploads';
 const DB_NAME = 'db.json';
 const COLLECTION_NAME = 'images';
 const upload = multer({ dest: `${ UPLOAD_PATH }` });
 const db = new Loki(`${ UPLOAD_PATH }/${ DB_NAME }`, { persistenceMethod: 'fs' });
-
-
 
 module.exports = (app) => {
     app.post('/upload', upload.single('file'), (req, res, next) => {

@@ -5,11 +5,9 @@ const gcloud = require('google-cloud')({
 });
 
 module.exports = (app, name) => {
-
     var vision = gcloud.vision();  
     const fileName = `${__dirname}/uploads/${name}`;
-    console.log('dir name', fileName);
-
+    // console.log('dir name', fileName);
     return new Promise ((resolve, reject) => {
         vision.detectText(fileName, (err, detected) => {
             // console.log(detected);
