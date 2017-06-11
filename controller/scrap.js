@@ -1,8 +1,10 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const questionLibrary = require('../test/questions');
+const EventEmitter = require("events").EventEmitter;
 
 module.exports = (app, text) => {
+    
     let section = text;
     if(text.length>100){
         section = text.substring(0,100);
@@ -36,8 +38,33 @@ module.exports = (app, text) => {
     //          slugArry.push(slug);
     //         return slugArry;   
     //     })
-    const courseLink = `https://api.coursera.org/api/courses.v1/?q=search&query=${key}`;
-    return { courseLink, cheggLink } ;
+    // const courseLink = `https://api.coursera.org/api/courses.v1/?q=search&query=${key}`;
+    // var body = new EventEmitter()
+    const getData = (res) => {
+            // const courseraLinks = res.body.elements;
+            // console.log('course:', res.data.elements[0].slug);
+            body = res.data.elements[0].slug;
+            //  body.emit('update');
+            return body;
+        }
+
+    // body.on('update', function () {
+    // console.log(body); // HOORAY! THIS WORKS!
+    // });
+
+    // return { courseLink, cheggLink } ;
+
+    return new Promise ((resolve, reject) => {
+         axios.get(`https://api.coursera.org/api/courses.v1/?q=search&query=${key}`)
+            .then((res) => { 
+                let body = res.data.elements[0].slug;
+                const courseLink = `https://www.coursera.org/learn/${body}`;
+                resolve({ body, courseLink, cheggLink });
+             })
+            .catch((err) => {
+                reject(err);
+            });
+    });
 }
 
 

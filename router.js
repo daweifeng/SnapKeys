@@ -22,12 +22,13 @@ module.exports = (app) => {
                 // res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
                 ImgToText(app, data.filename)
                     .then((text) => {
-                        const links = Scrap(app, text);
-                        const response = {
-                            links,
-                            text
-                        };
-                        res.send(response);
+                        Scrap(app, text).then((links) =>{
+                            const response = {
+                                links,
+                                text
+                            };
+                            res.send(response);
+                        });
                     })
                     .catch((err)=>{
                         res.status(400).send(err);
