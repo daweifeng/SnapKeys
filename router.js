@@ -11,7 +11,7 @@ const upload = multer({ dest: `${ UPLOAD_PATH }` });
 const db = new Loki(`${ UPLOAD_PATH }/${ DB_NAME }`, { persistenceMethod: 'fs' });
 
 module.exports = (app) => {
-    app.post('/upload', upload.single('avatar'), (req, res, next) => {
+    app.post('/upload', upload.single('file'), (req, res, next) => {
 
          loadCollection(COLLECTION_NAME, db).then((col) => {
                 const data = col.insert(req.file);
@@ -30,4 +30,8 @@ module.exports = (app) => {
          });
 
     });
+
+    app.get('/', (req, res, next) => {
+        res.send('Welcome to SnapKeys API!')
+    })
 }
