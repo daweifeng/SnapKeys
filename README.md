@@ -24,7 +24,7 @@ $ajax({
 
 To access Coursera Api(Using the link from Our API)
 $ajax({
-  type: "POST",
+  type: "GET",
   url: "COURSERA_API_URL",
   data: YOUR_DATA,
   success: (res) => {
