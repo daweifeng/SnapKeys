@@ -1,6 +1,6 @@
 const axios = require('axios');
 const gcloud = require('google-cloud')({
-    keyFilename: '../snapanswer-dd841b1edba2.json',
+    keyFilename: './snapanswer-dd841b1edba2.json',
     projectId: 'snapanswer-170323'
 });
 
@@ -18,7 +18,7 @@ module.exports = (app, name) => {
                 resolve(text);
             }
             else{
-                reject(err);
+                reject('err', err);
             }
         })
 
