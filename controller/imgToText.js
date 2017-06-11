@@ -12,7 +12,7 @@ module.exports = (app, name) => {
 
     return new Promise ((resolve, reject) => {
         vision.detectText(fileName, (err, detected) => {
-            console.log(detected);
+            // console.log(detected);
             const text = detected[0];
             if(!err){
                 resolve(text);

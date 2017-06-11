@@ -2,6 +2,7 @@ const multer = require('multer');
 const loadCollection = require('./utils.js');
 const Loki = require('lokijs');
 const ImgToText = require('./controller/imgToText');
+const Scrap = require('./controller/scrap');
 
 
 const UPLOAD_PATH = 'controller/uploads';
@@ -19,6 +20,7 @@ module.exports = (app) => {
                 // res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
                 ImgToText(app, data.filename)
                     .then((text) => {
+                        Scrap(app, text);
                         res.send(text);
                     })
                     .catch((err)=>{
