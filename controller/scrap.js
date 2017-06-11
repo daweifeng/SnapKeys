@@ -9,7 +9,6 @@ module.exports = (app, text) => {
         section = text.substring(0,100);
     }
     section = section.replace(/\s/g, "%20");
-    console.log(section);
     const cheggLink = `https://www.chegg.com/search/${section}/questions-and-answers?trackid=320802d1&strackid=2d555d86&event=button_submit#p=1`;
     // console.log('List link', listLink);
     // console.log('section', section);
