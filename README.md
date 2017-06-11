@@ -20,3 +20,21 @@ $ajax({
 
 ```
 
+```javascript
+
+To access Coursera Api(Using the link from Our API)
+$ajax({
+  type: "POST",
+  url: "COURSERA_API_URL",
+  data: YOUR_DATA,
+  success: (res) => {
+    const link = 
+      `https://www.coursera.org/learn/{res.data.elements[0].slug}`
+
+       //Do something with link
+       ...
+  }
+});
+
+```
+
