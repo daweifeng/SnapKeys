@@ -1,6 +1,7 @@
 # SnapKeys
 
 A web app that helps students to find homeworks solutions by taking a picture of the question.
+The app is using Google Vision API for analyzing the text in the uploaded image.
 
 ## Get Started
 
